@@ -1,0 +1,42 @@
+<html>
+<head>
+<script type="text/javascript">
+<!--
+// http://www.marplo.net
+// Matricea care contine calea pt. imagini
+// Schimbati cu imaginile folosite de dv.
+src = ["p2.png", "p6.png", "p5.jpg", "p4.jpg", "p3.jpg" , "p1.jpg"]
+
+// Matricea care contine adresele URL spre care va redirectiona imaginile
+// Schimbati cu adresele URL folosite de dv.
+
+// Aici setati durata, in secunde pt. fiecare imagine
+durata = 4;
+
+// Codul umator prelucreaza matricele
+// Schimba imagine la nr. de secunde stabilite
+// Atribue fiecarei imagini URL-ul corespunator
+ads=[]; ct=0;
+function schimbaAd() {
+  var n=(ct+1)%src.length;
+  if (ads[n] && (ads[n].complete || ads[n].complete==null)) {
+    document["Imagine"].src = ads[ct=n].src;
+  }
+  ads[n=(ct+1)%src.length] = new Image;
+  ads[n].src = src[n];
+  setTimeout("schimbaAd()",durata*500);
+}
+
+// Apeleaza functia la incarcarea paginii
+onload = function() {
+  if (document.images)
+      schimbaAd();
+}
+//-->
+</script>
+</head>
+<body>
+  <img name="Imagine" src="p2.png" width="100%" height="250" border="0">
+</a>
+</body>
+</html>

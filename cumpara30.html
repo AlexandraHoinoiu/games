@@ -1,0 +1,60 @@
+<html>
+<head>
+<script type="text/Javascript" language="JavaScript">
+// Aici pui produsele si preturile
+produse = new Array(); 
+produse[0] = new Array('Beatbuddy',  18.11);
+
+// end produse
+
+function caltot()
+{
+   var tott = 0;
+   var totx = 0;
+   for (i=0;i<produse.length;i++)
+   {   
+      var pret = parseFloat(document.getElementById('pret'+i.toString()).value);
+      var cant = parseInt(document.getElementById('cant'+i.toString()).value);
+      document.getElementById('cant'+i.toString()).value = cant;
+      totx = pret*cant;
+      tott += totx;
+      document.getElementById('val'+i.toString()).value = totx.toString();
+   }
+   document.getElementById('tot').value = tott.toString();
+}
+
+function emailCheck()
+{
+   alert('Am trimis!');
+   return false;
+}
+</script>
+<style type="text/css"> input:disabled { background-color:#ffffff;}</style>
+</head>
+<body background="Background2.jpg">
+   <form name="form1" method="post" action="trimite.php" onsubmit="return emailCheck()">
+   <table width="50%">
+   <tr><td><h1>Produs</td><td><h1>Pret<br />[EUR]</td><td><h1>Cantitate<br />[buc]</td><td><h1>Valoare<br />[EUR]</td></tr>
+   <script type="text/Javascript" language="JavaScript">
+      for (i=0;i<=produse.length-1;i++)
+      {
+         document.write('<tr><td>'+
+         '<input type="text" name="prod[]" id="prod'+i.toString()+'" value="'+ produse[i][0]+'" disabled="disabled" >' +
+         '</td><td>'+
+         '<input  type="text" name="pret[]" id="pret'+i.toString()+'" value="'+ produse[i][1].toString()+'" disabled="disabled" >' +
+         '</td><td>'+
+         '<input  type="text" name="cant[]" id="cant'+i.toString()+'" value="0" onchange="caltot();" >' +
+         '</td><td>'+
+         '<input  type="text" name="val[]" id="val'+i.toString()+'" value="0" disabled="disabled" >' +
+         '</td></tr>');
+      }   
+   </script>
+   <tr><td colspan="3"><h1>Total</td>
+   <td><input type="text" name="tot" id="tot" value="0" disabled="disabled"></td></tr>
+   <tr> <td colspan="3"> <h1> Adresa <input type="text" />  </td>
+ </table>
+   <br /><input type="submit" name="trimite" value="Trimite" />
+</form>
+<font size="12" align="center"> Mul&#355;umim c&#259; ai cump&#259;rat de la noi! Te mai a&#351;tept&#259;m! </font>
+</body>
+</html>
